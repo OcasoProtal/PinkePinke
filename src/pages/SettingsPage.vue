@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center"> Settings </q-page>
+  <q-page class="text-center bg-secondary"> Settings </q-page>
 </template>
 
 <script setup>

@@ -57,14 +57,37 @@
         />
       </div>
     </div>
+    <div class="row q-pt-lg">
+      <div class="col">
+        <q-btn color="primary" icon="cancel" label="TRAClear" />
+      </div>
+      <div class="col">
+        <q-btn
+          color="primary"
+          icon="check_circle"
+          label="TRASave"
+          @click="addActivity"
+        />
+      </div>
+    </div>
+    <ActivityList />
   </q-page>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useActivityStore } from "src/stores/activity-store";
+import ActivityList from "src/components/ActivityList.vue";
+
+/*
+Main setup
+*/
+
 defineOptions({
   name: "IndexPage",
 });
+
+const activityStore = useActivityStore();
 
 /*
 Data setup
@@ -78,4 +101,16 @@ const allPersons = ref([
   { label: "Dieter", value: "3" },
 ]);
 const amount = ref(0.0);
+
+/*
+Actions
+*/
+function addActivity() {
+  activityStore.addActivity({
+    date: date,
+    description: description,
+    participants: participants,
+    amount: amount,
+  });
+}
 </script>
