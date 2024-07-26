@@ -1,12 +1,59 @@
 <template>
-  <div>My component</div>
+  <q-table
+    title="TRAActivities"
+    class="bg-secondary"
+    :rows="activityStore.activities"
+    :columns="columns"
+    row-key="name"
+  />
 </template>
 
-<script>
-export default {
-  // name: 'ComponentName',
-  setup () {
-    return {}
-  }
-}
+<script setup>
+import { ref } from "vue";
+import { useActivityStore } from "src/stores/activity-store";
+
+/*
+Main setup
+*/
+
+defineOptions({
+  name: "IndexPage",
+});
+
+const activityStore = useActivityStore();
+/*
+Data Setup
+*/
+const columns = [
+  {
+    name: "date",
+    required: true,
+    label: "TRADate",
+    align: "left",
+    field: (row) => activityStore.activities.date,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "description",
+    label: "TRADate",
+    align: "left",
+    field: "description",
+    sortable: true,
+  },
+  // {
+  //   name: "participants",
+  //   label: "TRAParticipants",
+  //   align: "left",
+  //   field: "participants",
+  //   sortable: true,
+  // },
+  {
+    name: "amount",
+    label: "TRAAmount",
+    field: "amount",
+    sortable: true,
+    sort: (a, b) => parseFloat(a, 10) - parseParseFloat(b, 10),
+  },
+];
 </script>
