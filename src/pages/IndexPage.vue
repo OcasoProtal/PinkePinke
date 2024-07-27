@@ -106,11 +106,12 @@ const amount = ref(0.0);
 Actions
 */
 function addActivity() {
+  console.log(date.value);
   activityStore.addActivity({
-    date: date,
-    description: description,
-    participants: participants,
-    amount: amount,
+    date: date.value,
+    description: description.value,
+    participants: participants.value,
+    amount: amount.value,
   });
 }
 </script>
