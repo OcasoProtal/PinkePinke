@@ -46,7 +46,11 @@ const columns = [
     label: "TRAParticipants",
     align: "left",
     field: "participants",
-    format: (val) => `${val}`,
+    format: (val) =>
+      `${val
+        .map((v) => v.label)
+        .sort()
+        .join(", ")}`,
     sortable: true,
   },
   {
