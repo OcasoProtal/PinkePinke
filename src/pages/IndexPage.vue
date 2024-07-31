@@ -59,7 +59,12 @@
     </div>
     <div class="row q-pt-lg">
       <div class="col">
-        <q-btn color="primary" icon="cancel" label="TRAClear" />
+        <q-btn
+          color="primary"
+          icon="cancel"
+          label="TRAClear"
+          @click="clearActivity"
+        />
       </div>
       <div class="col">
         <q-btn
@@ -113,5 +118,11 @@ function addActivity() {
     participants: participants.value,
     amount: amount.value,
   });
+}
+function clearActivity() {
+  date.value = null;
+  description.value = "";
+  participants.value = null;
+  amount.value = 0.0;
 }
 </script>
