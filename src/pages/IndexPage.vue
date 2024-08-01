@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col">
         <!-- Date -->
+        <input type="hidden" name="activityid" :value="id" />
         <q-input
           outlined
           v-model="date"
@@ -82,6 +83,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { uid } from "quasar";
 import { useActivityStore } from "src/stores/activity-store";
 import ActivityList from "src/components/ActivityList.vue";
 
@@ -99,6 +101,7 @@ const activityName = "ActivityName";
 /*
 Data setup
 */
+const id = ref("");
 const date = ref("");
 const description = ref("");
 const participants = ref(null);
@@ -115,6 +118,7 @@ Actions
 function addActivity() {
   console.log(date.value);
   activityStore.addActivity({
+    id: id.value ? id.value : uid(),
     date: date.value,
     description: description.value,
     participants: participants.value,
@@ -124,6 +128,7 @@ function addActivity() {
 }
 
 function clearActivity() {
+  id.value = "";
   date.value = null;
   description.value = "";
   participants.value = null;
