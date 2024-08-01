@@ -1,5 +1,6 @@
 <template>
   <q-page class="text-center bg-secondary">
+    <div class="h2 q-py-md">{{ activityName }}</div>
     <div class="row">
       <div class="col">
         <!-- Date -->
@@ -93,6 +94,7 @@ defineOptions({
 });
 
 const activityStore = useActivityStore();
+const activityName = "ActivityName";
 
 /*
 Data setup
