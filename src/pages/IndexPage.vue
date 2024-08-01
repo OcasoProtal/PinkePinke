@@ -120,7 +120,9 @@ function addActivity() {
     participants: participants.value,
     amount: amount.value,
   });
+  // clearActivity();
 }
+
 function clearActivity() {
   date.value = null;
   description.value = "";

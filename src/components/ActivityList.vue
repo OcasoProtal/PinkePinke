@@ -58,7 +58,7 @@ const columns = [
     label: "TRAAmount",
     field: "amount",
     sortable: true,
-    sort: (a, b) => parseFloat(a, 10) - parseParseFloat(b, 10),
+    sort: (a, b) => parseFloat(a, 10) - parseFloat(b, 10),
   },
 ];
 </script>
