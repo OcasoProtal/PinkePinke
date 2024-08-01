@@ -64,6 +64,12 @@ const linksList = [
     icon: "settings",
     link: "/settings",
   },
+  {
+    title: "Export",
+    caption: "Do the export",
+    icon: "upgrade",
+    link: "/export",
+  },
 ];
 
 const leftDrawerOpen = ref(false);

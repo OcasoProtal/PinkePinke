@@ -1,6 +1,6 @@
 <template>
   <q-page class="text-center bg-secondary">
-    <div class="h2 q-py-md">{{ activityName }}</div>
+    <div class="text-h4 q-py-md">{{ activityName }}</div>
     <div class="row">
       <div class="col">
         <!-- Date -->
