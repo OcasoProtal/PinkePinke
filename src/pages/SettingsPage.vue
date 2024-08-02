@@ -5,17 +5,36 @@
     <div class="row">
       <div class="text-h6 q-py-md float-left">TRAParticipants</div>
     </div>
-    <div class="row">
-      <div class="col-5">
-        <q-input outlined label="TRAName" v-model="name" />
+    <q-form @submit="addParticipant" class="q-gutter-md">
+      <div class="row items-start">
+        <div class="col-5">
+          <q-input
+            outlined
+            label="TRAName"
+            v-model="name"
+            lazy-rules
+            :rules="[(val) => (val && val.length > 0) || 'TRANameMissing']"
+          />
+        </div>
+        <div class="col-5">
+          <q-input
+            outlined
+            label="TRAMail"
+            type="email"
+            v-model="mail"
+            lazy-rules
+            :rules="[
+              (val) => (val && val.length > 0) || 'TRAMailMissing',
+              (val, rules) =>
+                rules.email(val) || 'Please enter a valid email address',
+            ]"
+          />
+        </div>
+        <div class="col">
+          <q-btn round color="primary" icon="add" type="submit" />
+        </div>
       </div>
-      <div class="col-5">
-        <q-input outlined label="TRAMail" type="email" v-model="mail" />
-      </div>
-      <div class="col">
-        <q-btn round color="primary" icon="add" @click="addParticipant" />
-      </div>
-    </div>
+    </q-form>
     <div class="row">
       <div class="col">
         <ParticipantsList />
