@@ -17,7 +17,9 @@
       </div>
     </div>
     <div class="row">
-      <ParticipantsList />
+      <div class="col">
+        <ParticipantsList />
+      </div>
     </div>
   </q-page>
 </template>
@@ -28,10 +30,12 @@ Imports
 */
 import { ref } from "vue";
 import ParticipantsList from "src/components/ParticipantsList.vue";
+import { useParticipantStore } from "src/stores/participant-store";
 
 /*
 Main setup
 */
+const participantStore = useParticipantStore();
 
 const name = ref("");
 const mail = ref("");
@@ -45,5 +49,11 @@ Actions
 */
 function addParticipant() {
   console.log(name.value, mail.value);
+  participantStore.addParticipant({
+    name: name.value,
+    mail: mail.value,
+  });
+  name.value = "";
+  mail.value = "";
 }
 </script>

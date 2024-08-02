@@ -1,5 +1,7 @@
 <template>
   <q-table
+    dense
+    flat
     title="TRAActivities"
     class="bg-secondary"
     :rows="activityStore.activities"

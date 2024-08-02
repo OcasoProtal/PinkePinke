@@ -10,7 +10,6 @@ export const useActivityStore = defineStore("activity", () => {
   function addActivity(activity) {
     activities.value.push(activity);
     LocalStorage.setItem("Activities", JSON.stringify(activities.value));
-    console.log("LS", LocalStorage.getAll());
   }
   return { activities, count, addActivity };
 });
