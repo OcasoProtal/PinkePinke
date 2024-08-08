@@ -62,7 +62,7 @@
           class="q-mb-sm"
           icon="add"
           color="primary"
-          @click="search"
+          @click="addLender"
         />
       </div>
     </div>
@@ -149,6 +149,7 @@ const allPersons = ref(
 );
 const amount = ref(0.0);
 const lender = ref(null);
+const lenderList = ref([]);
 
 /*
 Actions
@@ -169,7 +170,17 @@ function clearActivity() {
   id.value = "";
   date.value = null;
   description.value = "";
+  lender.value = null;
   participants.value = null;
   amount.value = 0.0;
+}
+
+function addLender() {
+  lenderList.value.push({ lender: lender.value[0], amount: amount.value });
+  allPersons.value = allPersons.value.filter((p) => {
+    return p.label != lender.value[0].label && p.value != lender.value[0].value;
+  });
+  lender.value = null;
+  amount.value = null;
 }
 </script>
