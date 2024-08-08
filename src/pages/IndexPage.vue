@@ -66,6 +66,10 @@
         />
       </div>
     </div>
+    <div class="row" v-show="lenders" v-for="l in lenderList" :key="l.lender">
+      <div class="col-6">{{ l.lender.label }}</div>
+      <div class="col-6">{{ l.amount }}</div>
+    </div>
     <div class="row">
       <div class="col">
         <!-- Participants -->
@@ -150,6 +154,7 @@ const allPersons = ref(
 const amount = ref(0.0);
 const lender = ref(null);
 const lenderList = ref([]);
+let lenders = false;
 
 /*
 Actions
@@ -182,5 +187,7 @@ function addLender() {
   });
   lender.value = null;
   amount.value = null;
+  console.log(JSON.parse(JSON.stringify(lenderList.value)));
+  lenders = true;
 }
 </script>
