@@ -36,6 +36,36 @@
         <q-input outlined label="TRADescription" v-model="description" />
       </div>
     </div>
+    <div class="row items-end">
+      <div class="col-6">
+        <!-- Lender -->
+        <q-select
+          v-model="lender"
+          :options="allPersons"
+          outlined
+          multiple
+          label="TRALender"
+          class="q-pt-lg"
+        />
+      </div>
+      <div class="col-4">
+        <q-input
+          outlined
+          label="TRAAmount"
+          v-model.number="amount"
+          class="q-mt-lg"
+        />
+      </div>
+      <div class="col-2">
+        <q-btn
+          round
+          class="q-mb-sm"
+          icon="add"
+          color="primary"
+          @click="search"
+        />
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <!-- Participants -->
@@ -46,16 +76,6 @@
           multiple
           label="TRAParticipants"
           class="q-pt-lg"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <q-input
-          outlined
-          label="TRAAmount"
-          v-model.number="amount"
-          class="q-mt-lg"
         />
       </div>
     </div>
@@ -105,12 +125,30 @@ const id = ref("");
 const date = ref("");
 const description = ref("");
 const participants = ref(null);
-const allPersons = ref([
-  { label: "Horst", value: "1" },
-  { label: "Schorsch", value: "2" },
-  { label: "Dieter", value: "3" },
-]);
+const allPersons = ref(
+  [
+    { label: "Horst", value: "1" },
+    { label: "Schorsch", value: "2" },
+    { label: "Dieter", value: "3" },
+    { label: "Fröhn", value: "40" },
+    { label: "Monaco Franze", value: "11" },
+    { label: "Baby Schimerlos", value: "21" },
+  ].sort((a, b) => {
+    const nameA = a.label.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.label.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  })
+);
 const amount = ref(0.0);
+const lender = ref(null);
 
 /*
 Actions
