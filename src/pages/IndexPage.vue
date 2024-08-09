@@ -36,7 +36,7 @@
         <q-input outlined label="TRADescription" v-model="description" />
       </div>
     </div>
-    <div class="row items-end">
+    <div class="row items-end q-pb-sm">
       <div class="col-6">
         <!-- Lender -->
         <q-select
@@ -67,8 +67,12 @@
       </div>
     </div>
     <div class="row" v-show="lenders" v-for="l in lenderList" :key="l.lender">
-      <div class="col-6">{{ l.lender.label }}</div>
-      <div class="col-6">{{ l.amount }}</div>
+      <div class="col-6">
+        <div class="float-right q-pr-sm">{{ l.lender.label }}</div>
+      </div>
+      <div class="col-6">
+        <div class="float-left q-pl-sm">{{ l.amount }}</div>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -136,7 +140,7 @@ const allPersons = ref(
     { label: "Dieter", value: "3" },
     { label: "Fröhn", value: "40" },
     { label: "Monaco Franze", value: "11" },
-    { label: "Baby Schimerlos", value: "21" },
+    { label: "Baby Schimmerlos", value: "21" },
   ].sort((a, b) => {
     const nameA = a.label.toUpperCase(); // ignore upper and lowercase
     const nameB = b.label.toUpperCase(); // ignore upper and lowercase
