@@ -43,7 +43,6 @@
           v-model="lender"
           :options="allPersons"
           outlined
-          multiple
           label="TRALender"
           class="q-pt-lg"
         />
@@ -62,6 +61,7 @@
           class="q-mb-sm"
           icon="add"
           color="primary"
+          :disable="lenderDisabled"
           @click="addLender"
         />
       </div>
@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { uid } from "quasar";
 import { useActivityStore } from "src/stores/activity-store";
 import ActivityList from "src/components/ActivityList.vue";
@@ -156,6 +156,10 @@ const lender = ref(null);
 const lenderList = ref([]);
 let lenders = false;
 
+const lenderDisabled = computed(() => {
+  return !lender.value || amount.value <= 0;
+});
+
 /*
 Actions
 */
@@ -181,9 +185,9 @@ function clearActivity() {
 }
 
 function addLender() {
-  lenderList.value.push({ lender: lender.value[0], amount: amount.value });
+  lenderList.value.push({ lender: lender.value, amount: amount.value });
   allPersons.value = allPersons.value.filter((p) => {
-    return p.label != lender.value[0].label && p.value != lender.value[0].value;
+    return p.label != lender.value.label && p.value != lender.value.value;
   });
   lender.value = null;
   amount.value = null;
