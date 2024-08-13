@@ -180,7 +180,7 @@ function addActivity() {
     amount: amount.value,
     lenders: lenderList.value,
   });
-  // clearActivity();
+  clearActivity();
 }
 
 function clearActivity() {
@@ -188,8 +188,10 @@ function clearActivity() {
   date.value = null;
   description.value = "";
   lender.value = null;
+  lenderList.value = [];
   participants.value = null;
   amount.value = 0.0;
+  lenders = false;
 }
 
 function addLender() {
