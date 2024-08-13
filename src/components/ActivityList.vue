@@ -6,7 +6,7 @@
     class="bg-secondary"
     :rows="activityStore.activities"
     :columns="columns"
-    row-key="name"
+    row-key="row.id"
   />
 </template>
 
@@ -56,9 +56,19 @@ const columns = [
     sortable: true,
   },
   {
-    name: "amount",
+    name: "lenders",
+    label: "TRALenders",
+    field: (row) => row.lenders.map((l) => l.lender.label).join(", "),
+    sortable: true,
+  },
+  {
+    name: "id",
     label: "TRAAmount",
-    field: "amount",
+    field: (row) =>
+      row.lenders.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.amount,
+        0
+      ),
     sortable: true,
     sort: (a, b) => parseFloat(a, 10) - parseFloat(b, 10),
   },
