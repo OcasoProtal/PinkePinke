@@ -169,12 +169,16 @@ Actions
 */
 function addActivity() {
   console.log(date.value);
+  if (lender.value && amount.value) {
+    lenderList.value.push({ lender: lender.value, amount: amount.value });
+  }
   activityStore.addActivity({
     id: id.value ? id.value : uid(),
     date: date.value,
     description: description.value,
     participants: participants.value,
     amount: amount.value,
+    lenders: lenderList.value,
   });
   // clearActivity();
 }
