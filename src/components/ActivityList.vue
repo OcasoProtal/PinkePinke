@@ -8,7 +8,7 @@
     :columns="columns"
     row-key="row.id"
   />
-  <div class="row">
+  <div class="row" v-if="total">
     <div class="col-2 text-right text-h6">TRATotal:</div>
     <div class="col-1"></div>
     <div class="col text-left text-h6">{{ total }}</div>
