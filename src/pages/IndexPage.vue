@@ -168,7 +168,6 @@ const lenderDisabled = computed(() => {
 Actions
 */
 function addActivity() {
-  console.log(date.value);
   if (lender.value && amount.value) {
     lenderList.value.push({ lender: lender.value, amount: amount.value });
   }
@@ -177,7 +176,10 @@ function addActivity() {
     date: date.value,
     description: description.value,
     participants: participants.value,
-    amount: amount.value,
+    amount: lenderList.value.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.amount,
+      0
+    ),
     lenders: lenderList.value,
   });
   clearActivity();
