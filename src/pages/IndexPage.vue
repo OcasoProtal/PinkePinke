@@ -133,15 +133,16 @@ const id = ref("");
 const date = ref("");
 const description = ref("");
 const participants = ref(null);
+const personlist = [
+  { label: "Horst", value: "1" },
+  { label: "Schorsch", value: "2" },
+  { label: "Dieter", value: "3" },
+  { label: "Fröhn", value: "40" },
+  { label: "Monaco Franze", value: "11" },
+  { label: "Baby Schimmerlos", value: "21" },
+];
 const allPersons = ref(
-  [
-    { label: "Horst", value: "1" },
-    { label: "Schorsch", value: "2" },
-    { label: "Dieter", value: "3" },
-    { label: "Fröhn", value: "40" },
-    { label: "Monaco Franze", value: "11" },
-    { label: "Baby Schimmerlos", value: "21" },
-  ].sort((a, b) => {
+  personlist.sort((a, b) => {
     const nameA = a.label.toUpperCase(); // ignore upper and lowercase
     const nameB = b.label.toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
@@ -193,6 +194,8 @@ function clearActivity() {
   lenderList.value = [];
   participants.value = null;
   amount.value = 0.0;
+  lenderList.value = [];
+  allPersons.value = personlist;
   lenders = false;
 }
 
