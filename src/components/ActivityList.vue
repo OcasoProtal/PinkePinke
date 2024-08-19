@@ -8,10 +8,15 @@
     :columns="columns"
     row-key="row.id"
   />
+  <div class="row">
+    <div class="col-2 text-right text-h6">TRATotal:</div>
+    <div class="col-1"></div>
+    <div class="col text-left text-h6">{{ total }}</div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useActivityStore } from "src/stores/activity-store";
 
 /*
@@ -73,4 +78,12 @@ const columns = [
     sort: (a, b) => parseFloat(a, 10) - parseFloat(b, 10),
   },
 ];
+
+const total = computed(() => {
+  console.log(JSON.parse(JSON.stringify(activityStore.activities)));
+  return activityStore.activities.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.amount,
+    0
+  );
+});
 </script>
