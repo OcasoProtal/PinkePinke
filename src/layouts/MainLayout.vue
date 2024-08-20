@@ -76,6 +76,12 @@ const linksList = [
     icon: "upgrade",
     link: "/export",
   },
+  {
+    title: "Developer",
+    caption: "Developer Tools",
+    icon: "developer_board",
+    link: "/devel",
+  },
 ];
 
 const leftDrawerOpen = ref(false);

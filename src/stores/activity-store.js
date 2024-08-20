@@ -18,5 +18,10 @@ export const useActivityStore = defineStore("activity", () => {
     activities.value.push(activity);
     LocalStorage.setItem("Activities", JSON.stringify(activities.value));
   }
-  return { activities, count, addActivity };
+
+  function clearAllActivities() {
+    LocalStorage.remove("Activities");
+  }
+
+  return { activities, count, addActivity, clearAllActivities };
 });
