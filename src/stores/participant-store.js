@@ -15,9 +15,10 @@ export const useParticipantStore = defineStore("participant", () => {
   }
 
   function deleteParticipant(participantMail) {
-    console.log("TBD.", participantMail);
-    // participants.value.push(participant);
-    // LocalStorage.setItem("Participants", JSON.stringify(participants.value));
+    participants.value = participants.value.filter(
+      (p) => p.mail !== participantMail
+    );
+    LocalStorage.setItem("Participants", JSON.stringify(participants.value));
   }
 
   function clearAllParticipants() {
