@@ -2,9 +2,14 @@
   <q-page class="text-center bg-secondary">
     <div class="text-h4 q-py-md">TRASettings</div>
 
-    <div class="row">
-      <div class="text-h6 q-py-md float-left">TRAParticipants</div>
+    <div class="text-h5 q-py-md">TRAParticipants</div>
+    <div
+      class="text-warning q-py-md"
+      v-if="participantStore.participants.length === 0"
+    >
+      TRAParticipantsMissingWarning
     </div>
+
     <q-form @submit="addParticipant" class="q-gutter-md">
       <div class="row items-start">
         <div class="col-5">

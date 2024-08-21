@@ -1,9 +1,23 @@
+import { LocalStorage } from "quasar";
+
+const localStoreParticipants =
+  JSON.parse(LocalStorage.getItem("Participants")) || [];
+
 const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/IndexPage.vue") },
+      {
+        path: "",
+        component: () => {
+          if (localStoreParticipants.length) {
+            return import("pages/IndexPage.vue");
+          } else {
+            return import("pages/SettingsPage.vue");
+          }
+        },
+      },
       { path: "/settings", component: () => import("pages/SettingsPage.vue") },
       { path: "/export", component: () => import("pages/ExportPage.vue") },
       { path: "/devel", component: () => import("pages/DeveloperPage.vue") },

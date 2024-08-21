@@ -22,11 +22,6 @@ import { useActivityStore } from "src/stores/activity-store";
 /*
 Main setup
 */
-
-defineOptions({
-  name: "IndexPage",
-});
-
 const activityStore = useActivityStore();
 /*
 Data Setup
