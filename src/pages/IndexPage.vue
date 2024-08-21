@@ -110,9 +110,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onBeforeMount } from "vue";
 import { uid } from "quasar";
 import { useActivityStore } from "src/stores/activity-store";
+import { useParticipantStore } from "src/stores/participant-store";
+import { useRouter } from "vue-router";
 import ActivityList from "src/components/ActivityList.vue";
 
 /*
@@ -124,6 +126,8 @@ defineOptions({
 });
 
 const activityStore = useActivityStore();
+const participantsStore = useParticipantStore();
+const router = useRouter();
 const activityName = "ActivityName";
 
 /*
@@ -168,6 +172,12 @@ const lenderDisabled = computed(() => {
 /*
 Actions
 */
+onBeforeMount(() => {
+  if (participantsStore.participants.length === 0) {
+    router.push({ path: "/settings" });
+  }
+});
+
 function addActivity() {
   if (lender.value && amount.value) {
     lenderList.value.push({ lender: lender.value, amount: amount.value });
