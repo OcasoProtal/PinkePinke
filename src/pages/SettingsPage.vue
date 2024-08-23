@@ -14,6 +14,7 @@
             (val) => (val && val.length > 0) || 'TRAActivityNameMissing',
           ]"
           @keyup.enter="activityNameChanged"
+          @blur="activityNameChanged"
         />
       </div>
     </div>
