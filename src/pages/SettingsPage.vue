@@ -102,7 +102,8 @@ function addParticipant() {
   name.value = "";
   mail.value = "";
 }
-function activityNameChanged() {
+function activityNameChanged(event) {
   generalSettingsStore.setActivityName(activityName.value);
+  event.target.blur();
 }
 </script>
