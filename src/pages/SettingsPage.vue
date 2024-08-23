@@ -2,16 +2,32 @@
   <q-page class="text-center bg-secondary">
     <div class="text-h4 q-py-md">TRASettings</div>
 
-    <div class="text-h5 q-py-md">TRAParticipants</div>
+    <div class="row">
+      <div class="col-5 text-h6">TRAActivityName</div>
+      <div class="col-6">
+        <q-input
+          outlined
+          label="TRAActivityName"
+          v-model="activityName"
+          lazy-rules
+          :rules="[
+            (val) => (val && val.length > 0) || 'TRAActivityNameMissing',
+          ]"
+          @keyup.enter="activityNameChanged"
+        />
+      </div>
+    </div>
+
+    <div class="text-h5">TRAParticipants</div>
     <div
-      class="text-warning q-py-md"
+      class="text-warning q-pt-md"
       v-if="participantStore.participants.length === 0"
     >
       TRAParticipantsMissingWarning
     </div>
 
     <q-form @submit="addParticipant" class="q-gutter-md">
-      <div class="row items-start">
+      <div class="row items-start q-pt-md">
         <div class="col-5">
           <q-input
             outlined
@@ -55,11 +71,17 @@ Imports
 import { ref } from "vue";
 import ParticipantsList from "src/components/ParticipantsList.vue";
 import { useParticipantStore } from "src/stores/participant-store";
+import { useGeneralSettingsStore } from "src/stores/general-store";
 
 /*
 Main setup
 */
 const participantStore = useParticipantStore();
+const generalSettingsStore = useGeneralSettingsStore();
+
+const activityName = ref(
+  generalSettingsStore.generalSettings["ActivityName"] || ""
+);
 
 const name = ref("");
 const mail = ref("");
@@ -79,5 +101,8 @@ function addParticipant() {
   });
   name.value = "";
   mail.value = "";
+}
+function activityNameChanged() {
+  generalSettingsStore.setActivityName(activityName.value);
 }
 </script>
