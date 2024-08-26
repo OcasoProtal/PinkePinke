@@ -114,6 +114,7 @@ import { ref, computed, onBeforeMount } from "vue";
 import { uid } from "quasar";
 import { useActivityStore } from "src/stores/activity-store";
 import { useParticipantStore } from "src/stores/participant-store";
+import { useGeneralSettingsStore } from "src/stores/general-store";
 import { useRouter } from "vue-router";
 import ActivityList from "src/components/ActivityList.vue";
 
@@ -127,8 +128,8 @@ defineOptions({
 
 const activityStore = useActivityStore();
 const participantsStore = useParticipantStore();
+const generalSettingsStore = useGeneralSettingsStore();
 const router = useRouter();
-const activityName = "ActivityName";
 
 /*
 Data setup
@@ -137,6 +138,10 @@ const id = ref("");
 const date = ref("");
 const description = ref("");
 const participants = ref(null);
+const activityName = ref(
+  generalSettingsStore.generalSettings["ActivityName"] || ""
+);
+
 const personlist = [
   { label: "Horst", value: "1" },
   { label: "Schorsch", value: "2" },
